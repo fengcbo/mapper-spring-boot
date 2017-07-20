@@ -1,0 +1,49 @@
+group 'com.ourziu.mybatis'
+version '1.0.0'
+
+allprojects {
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'maven'
+
+    group 'com.ourziu.mybatis'
+    version '1.0.0'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    artifacts { archives sourcesJar }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(
+                        url: "${nexusUrl}/content/repositories/releases") {
+                    authentication(userName: nexusUsername, password: nexusPassword)
+                }
+                snapshotRepository(
+                        url: "${nexusUrl}/content/repositories/snapshots") {
+                    authentication(userName: nexusUsername, password: nexusPassword)
+                }
+            }
+        }
+    }
+
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+        compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
+
+    }
+}

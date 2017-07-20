@@ -1,0 +1,3 @@
+rootProject.name = 'mapper-spring-boot'
+include 'mapper-spring-boot-autoconfigure'
+include 'mapper-spring-boot-starter'
