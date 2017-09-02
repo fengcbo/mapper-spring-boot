@@ -12,7 +12,7 @@
 所以在 Configuration 中无法使用通用mapper的方法。
 ```
 1. 关于 Configuration 和 AutoConfiguration的加载顺序请参考：https://github.com/chanjarster/spring-boot-all-callbacks
-2. 作者的另一个开源项目的start(https://github.com/pagehelper/pagehelper-spring-boot)也有这个问题
+2. 作者的另一个开源项目的start(https://github.com/pagehelper/pagehelper-spring-boot)也有这个问题，解决方式：https://github.com/fengcbo/pagehelper-spring-boot
 ```
 
 ***
